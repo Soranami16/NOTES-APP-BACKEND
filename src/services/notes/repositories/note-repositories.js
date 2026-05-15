@@ -15,11 +15,12 @@ class NoteRepositories {
     const result = await this.pool.query(query);
     return result.rows[0];
   }
-    async getNotes() {
+  
+  async getNotes() {
     const result = await this.pool.query('SELECT * FROM notes');
     return result.rows;
   }
-  
+
   async getNoteById(id) {
     const query = {
       text: 'SELECT * FROM notes WHERE id = $1',
