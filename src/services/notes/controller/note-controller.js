@@ -5,7 +5,7 @@ import noteRepositories from '../repositories/note-repositories.js';
 
 export const createNote = async (req, res, next) => {
   const { title, body, tags } = req.validated;
-  const note = await NoteRepositories.createNote({
+  const note = await noteRepositories.createNote({
     title,
     body,
     tags
@@ -19,13 +19,13 @@ export const createNote = async (req, res, next) => {
 };
 
 export const getNotes = async (req, res) => {
-  const notes = await NoteRepositories.getNotes();
+  const notes = await noteRepositories.getNotes();
   return response(res, 200, 'Catatan sukses ditampilkan', notes);
 };
  
 export const getNoteById = async (req, res, next) => {
   const { id } = req.params;
-  const note = await NoteRepositories.getNoteById(id);
+  const note = await noteRepositories.getNoteById(id);
  
   if (!note) {
     return next(new NotFoundError('Catatan tidak ditemukan'));
@@ -42,7 +42,7 @@ export const editNote = async (req, res, next) => {
     tags
   } = req.validated;
  
-  const note = await NoteRepositories.editNote({
+  const note = await noteRepositories.editNote({
     id,
     title,
     body,
@@ -57,7 +57,7 @@ export const editNote = async (req, res, next) => {
  
 export const deleteNote = async (req, res, next) => {
   const { id } = req.params;
-  const deletedNote = await NoteRepositories.deleteNote(id);
+  const deletedNote = await noteRepositories.deleteNote(id);
  
   if (!deletedNote) {
     return next(new NotFoundError('Catatan tidak ditemukan'));
