@@ -52,4 +52,5 @@ class NoteRepositories {
   }
 }
 
-export default new NoteRepositories();
+const noteRepositories = new NoteRepositories();
+export default noteRepositories;
