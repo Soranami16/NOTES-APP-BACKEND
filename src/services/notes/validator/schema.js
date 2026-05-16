@@ -6,6 +6,12 @@ export const notePayloadSchema = Joi.object({
   tags: Joi.array().items(Joi.string()).required(),
 });
 
+export const noteUpdatePayloadSchema = Joi.object({
+  title: Joi.string().max(50), // Tidak pakai .required() agar opsional
+  body: Joi.string(),
+  tags: Joi.array().items(Joi.string()),
+}).min(1);
+
 export const noteQuerySchema = Joi.object({
   title: Joi.string().empty(),
 });
